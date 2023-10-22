@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>temperature converter</title>
+    <style>
+        body{
+            background-color: navy;
+            padding: 50px 100px;
+            
+        }
+        h1{
+            text-align: center;
+            font-size: 40px;
+              color: white;
+        }
+        #div{
+            text-align: center;
+            background-color:black;
+            padding:30px;
+            size: 50;
+            border: 2px solid black;
+            
+        }
+        .dv{
+             display: inline-block;
+             font-size: 30px;
+             font-weight: bold;
+        }
+        .inp{
+              padding: 5px 10px;
+              margin: 10px;
+              font-size: 30px;
+              font-weight: bold;
+              width: 200px;
+              text-align: center;
+        }
+        label{
+            font-size: 40px;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <h1>Temperature Wizard</h1>
+    <div id="div">
+        <div class="dv">
+            <label> Celsius</label><br>
+         <input type="number" value="00" id="cel" class="inp">
+        </div>
+            <div class="dv">
+                <label> Fahrenheit</label><br>
+                <input type="number" value="32" id="fah" class="inp">
+            </div>
+            <div class="dv">
+                <label>kelvin</label><br>
+                <input type="number" value="273.15" id="kel" class="inp">
+            </div>
+    </div>
+    
+    
+</button>
+
+<script>
+    var cel = document.getElementById("cel");
+    var fah = document.getElementById("fah");
+    var kel = document.getElementById("kel");
+
+    cel.addEventListener('input', function () {
+        let c = parseFloat(this.value);
+        let f = (c * 9 / 5) + 32;
+        let k = c + 273.15;
+        if (!Number.isInteger(f)) {
+            f = f.toFixed(4);
+        }
+        if (!Number.isInteger(k)) {
+            k = k.toFixed(4);
+        }
+        fah.value = f;
+        kel.value = k;
+    });
+
+    fah.addEventListener('input', function () {
+        let f = parseFloat(this.value);
+        let c = (f - 32) * 5 / 9;
+        let k = (f - 32) * 5 / 9 + 273.15;
+        if (!Number.isInteger(c)) {
+            c = c.toFixed(4);
+        }
+        if (!Number.isInteger(k)) {
+            k = k.toFixed(4);
+        }
+        cel.value = c;
+        kel.value = k;
+    });
+
+    kel.addEventListener('input', function () {
+        let k = parseFloat(this.value);
+        let c = k - 273.15;
+        let f = (c * 9 / 5) + 32;
+        if (!Number.isInteger(c)) {
+            c = c.toFixed(4);
+        }
+        if (!Number.isInteger(f)) {
+            f = f.toFixed(4);
+        }
+        cel.value = c;
+        fah.value = f;
+    });
+</script>
+</body>
+</html>
